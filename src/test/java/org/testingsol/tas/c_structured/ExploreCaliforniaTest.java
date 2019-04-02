@@ -4,49 +4,33 @@ import io.github.bonigarcia.seljup.SeleniumExtension;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.testingsol.tas.c_structured.utilities.Pages;
+
+import static org.testingsol.tas.c_structured.utilities.Actions.*;
 
 @ExtendWith(SeleniumExtension.class)
 public class ExploreCaliforniaTest {
 
-    // URL PAGE CONFIGURATIONS
-    public static final String APP_URL = "https://www.explorecalifornia.org";
-    public static final String HOME_PAGE_URL = APP_URL + "/index.htm";
-
-    // PAGE ELEMENTS AND LOCATORS
-    public static final String CONTACT_PAGE_MENU_ITEM = ".//*[@id='siteNav']/ul/li[5]";
-    public static final String CONTACT_PAGE_TITLE = "A little about us...";
-
-    public static final By NAME_TEXTFIELD = By.id("name");
-    public static final By EMAIL_TEXTFIELD = By.id("email");
-    public static final By PHONE_TEXTFIELD = By.id("phone");
-    public static final By ADDRESS_TEXTFIELD = By.id("address");
-    public static final By STATE_DROPDOWN = By.id("state");
-    public static final By ZIPCODE_TEXTFIELD = By.id("zip");
-
-
     @Test
     public void shouldNavigateToContactPage(ChromeDriver driver) {
-
-        driver.get(HOME_PAGE_URL);
-        driver.findElement(By.xpath(CONTACT_PAGE_MENU_ITEM)).click();
-        Assertions.assertEquals(CONTACT_PAGE_TITLE, driver.getTitle(), "Navigation: Incorrect page");
+        goToPage(driver, Pages.HOME_PAGE_URL);
+        clickOn(driver, Pages.ContactPage.MENU_ITEM);
+        Assertions.assertEquals(Pages.ContactPage.TITLE, driver.getTitle(), "Navigation: Incorrect page");
     }
 
     @Test
     public void shouldFillInContactPageForm(ChromeDriver driver) {
 
-        driver.get(HOME_PAGE_URL);
-        driver.findElement(By.xpath(CONTACT_PAGE_MENU_ITEM)).click();
-        Assertions.assertEquals(CONTACT_PAGE_TITLE, driver.getTitle(), "Navigation: Incorrect page");
+        goToPage(driver, Pages.HOME_PAGE_URL);
+        clickOn(driver, Pages.ContactPage.MENU_ITEM);
+        Assertions.assertEquals(Pages.ContactPage.TITLE, driver.getTitle(), "Navigation: Incorrect page");
 
-        driver.findElement(NAME_TEXTFIELD).sendKeys("John Donovan");
-        driver.findElement(EMAIL_TEXTFIELD).sendKeys("John.Donovan@outlook.com");
-        driver.findElement(PHONE_TEXTFIELD).sendKeys("403 233 2332");
-        driver.findElement(ADDRESS_TEXTFIELD).sendKeys("34th Street Ave NE, Seattle");
-        new Select(driver.findElement(STATE_DROPDOWN)).selectByValue("WA");
-        driver.findElement(ZIPCODE_TEXTFIELD).sendKeys("98034");
+        type(driver, Pages.ContactPage.NAME_TEXTFIELD, "John Donovan");
+        type(driver, Pages.ContactPage.EMAIL_TEXTFIELD, "John.Donovan@outlook.com");
+        type(driver, Pages.ContactPage.PHONE_TEXTFIELD, "403 233 2332");
+        type(driver, Pages.ContactPage.ADDRESS_TEXTFIELD, "34th Street Ave NE, Seattle");
+        selectByValue(driver, Pages.ContactPage.STATE_DROPDOWN, "WA");
+        type(driver, Pages.ContactPage.ZIPCODE_TEXTFIELD, "98034");
     }
 }

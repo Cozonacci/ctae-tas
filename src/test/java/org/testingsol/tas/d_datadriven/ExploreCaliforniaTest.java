@@ -5,27 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.testingsol.tas.c_structured.utilities.Pages;
+
+import static org.testingsol.tas.c_structured.utilities.Actions.*;
 
 @ExtendWith(SeleniumExtension.class)
 public class ExploreCaliforniaTest {
-
-    // URL PAGE CONFIGURATIONS
-    public static final String APP_URL = "https://www.explorecalifornia.org";
-    public static final String HOME_PAGE_URL = APP_URL + "/index.htm";
-
-    // PAGE ELEMENTS AND LOCATORS
-    public static final String CONTACT_PAGE_MENU_ITEM = ".//*[@id='siteNav']/ul/li[5]";
-    public static final String CONTACT_PAGE_TITLE = "A little about us...";
-
-    public static final By NAME_TEXTFIELD = By.id("name");
-    public static final By EMAIL_TEXTFIELD = By.id("email");
-    public static final By PHONE_TEXTFIELD = By.id("phone");
-    public static final By ADDRESS_TEXTFIELD = By.id("address");
-    public static final By STATE_DROPDOWN = By.id("state");
-    public static final By ZIPCODE_TEXTFIELD = By.id("zip");
 
     @ParameterizedTest(name = "{index}: Sending feedback from {0}")
     @CsvSource({
@@ -36,15 +22,15 @@ public class ExploreCaliforniaTest {
                                             String address, String state, String zip,
                                             ChromeDriver driver) {
 
-        driver.get(HOME_PAGE_URL);
-        driver.findElement(By.xpath(CONTACT_PAGE_MENU_ITEM)).click();
-        Assertions.assertEquals(CONTACT_PAGE_TITLE, driver.getTitle(), "Navigation: Incorrect page");
+        goToPage(driver, Pages.HOME_PAGE_URL);
+        clickOn(driver, Pages.ContactPage.MENU_ITEM);
+        Assertions.assertEquals(Pages.ContactPage.TITLE, driver.getTitle(), "Navigation: Incorrect page");
 
-        driver.findElement(NAME_TEXTFIELD).sendKeys(name);
-        driver.findElement(EMAIL_TEXTFIELD).sendKeys(email);
-        driver.findElement(PHONE_TEXTFIELD).sendKeys(phone);
-        driver.findElement(ADDRESS_TEXTFIELD).sendKeys(address);
-        new Select(driver.findElement(STATE_DROPDOWN)).selectByValue(state);
-        driver.findElement(ZIPCODE_TEXTFIELD).sendKeys(zip);
+        type(driver, Pages.ContactPage.NAME_TEXTFIELD, name);
+        type(driver, Pages.ContactPage.EMAIL_TEXTFIELD, email);
+        type(driver, Pages.ContactPage.PHONE_TEXTFIELD, phone);
+        type(driver, Pages.ContactPage.ADDRESS_TEXTFIELD, address);
+        selectByValue(driver, Pages.ContactPage.STATE_DROPDOWN, state);
+        type(driver, Pages.ContactPage.ZIPCODE_TEXTFIELD, zip);
     }
 }
