@@ -1,4 +1,4 @@
-package org.testingsol.tas.linear;
+package org.testingsol.tas.b_linear;
 
 import io.github.bonigarcia.seljup.SeleniumExtension;
 import org.junit.jupiter.api.Assertions;
