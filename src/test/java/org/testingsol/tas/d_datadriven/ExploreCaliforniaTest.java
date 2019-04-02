@@ -27,7 +27,7 @@ public class ExploreCaliforniaTest {
     public static final By STATE_DROPDOWN = By.id("state");
     public static final By ZIPCODE_TEXTFIELD = By.id("zip");
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index}: Sending feedback from {0}")
     @CsvSource({
             "John Donovan,  John.Donovan@outlook.com,   403 233 2332,   '34th Street Ave NE, Seattle',  WA, 98034",
             "Helen Donovan, Helen.Donovan@outlook.com,  403 231 2334,   '32th Street Ave NE, Seattle',  WA, 98033"
