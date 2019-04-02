@@ -1,0 +1,240 @@
+{
+  "id": "e5768c0a-7309-4b47-9c08-30236303835e",
+  "version": "2.0",
+  "name": "ctae-tas",
+  "url": "https://www.explorecalifornia.org",
+  "tests": [
+    {
+      "id": "e2e6b482-7b98-49ba-a1ce-a80352b6a9a4",
+      "name": "capture-and-reply",
+      "commands": [
+        {
+          "id": "b0227a8d-88a3-4af4-8ae3-d74663abc234",
+          "comment": "Open Home page",
+          "command": "open",
+          "target": "/index.htm",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "1b068913-6992-4b8a-bb75-bfa17d6a6b83",
+          "comment": "Resize window",
+          "command": "setWindowSize",
+          "target": "1680x1050",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "060537b7-fb2e-4fc3-bec6-3245a833266d",
+          "comment": "Navigate to Contact page",
+          "command": "click",
+          "target": "css=.last > .tagline",
+          "targets": [
+            [
+              "css=.last > .tagline",
+              "css:finder"
+            ],
+            [
+              "xpath=//nav[@id='siteNav']/ul/li[5]/a/span",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//li[5]/a/span",
+              "xpath:position"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "e7d7222e-3b7d-4995-98bb-1fd4c1479215",
+          "comment": "Fill in the client name",
+          "command": "type",
+          "target": "id=name",
+          "targets": [
+            [
+              "id=name",
+              "id"
+            ],
+            [
+              "name=name",
+              "name"
+            ],
+            [
+              "css=#name",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='name']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//fieldset[@id='personalInfo']/p/input",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//input",
+              "xpath:position"
+            ]
+          ],
+          "value": "John Donovan"
+        },
+        {
+          "id": "67630255-ec79-4afc-b4ae-f65fce0c6984",
+          "comment": "Fill in the client email",
+          "command": "type",
+          "target": "id=email",
+          "targets": [
+            [
+              "id=email",
+              "id"
+            ],
+            [
+              "name=email",
+              "name"
+            ],
+            [
+              "css=#email",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='email']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//fieldset[@id='personalInfo']/p[2]/input",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//p[2]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": "John.Donovan@outlook.com"
+        },
+        {
+          "id": "603cf81e-d496-4157-8214-0892f1908736",
+          "comment": "Fill in the client phone number",
+          "command": "type",
+          "target": "id=phone",
+          "targets": [
+            [
+              "id=phone",
+              "id"
+            ],
+            [
+              "name=phone",
+              "name"
+            ],
+            [
+              "css=#phone",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='phone']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//fieldset[@id='personalInfo']/p[3]/input",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//p[3]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": "403 233 2332"
+        },
+        {
+          "id": "cea682b1-b74d-4024-87e5-5e734094f7b2",
+          "comment": "Fill in the client address",
+          "command": "type",
+          "target": "id=address",
+          "targets": [
+            [
+              "id=address",
+              "id"
+            ],
+            [
+              "name=address",
+              "name"
+            ],
+            [
+              "css=#address",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='address']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//fieldset[@id='personalInfo']/p[4]/input",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//p[4]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": "34th Street Ave NE, Seattle"
+        },
+        {
+          "id": "dc4e6b66-2100-497a-86f5-7c32411b3261",
+          "comment": "Select the client state",
+          "command": "select",
+          "target": "id=state",
+          "targets": [],
+          "value": "label=Washington"
+        },
+        {
+          "id": "b276fe54-adb9-47af-934d-0032b3349fb4",
+          "comment": "Enter the zip code",
+          "command": "type",
+          "target": "id=zip",
+          "targets": [
+            [
+              "id=zip",
+              "id"
+            ],
+            [
+              "name=zip",
+              "name"
+            ],
+            [
+              "css=#zip",
+              "css:finder"
+            ],
+            [
+              "xpath=//input[@id='zip']",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=//fieldset[@id='personalInfo']/p[6]/input",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//p[6]/input",
+              "xpath:position"
+            ]
+          ],
+          "value": "98034"
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "f9ae8982-2de5-40de-81f2-3d5e98a6b8f7",
+      "name": "Default Suite",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "e2e6b482-7b98-49ba-a1ce-a80352b6a9a4"
+      ]
+    }
+  ],
+  "urls": [
+    "https://www.explorecalifornia.org/"
+  ],
+  "plugins": []
+}
