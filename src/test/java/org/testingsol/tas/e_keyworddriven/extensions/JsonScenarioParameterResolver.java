@@ -25,7 +25,7 @@ public class JsonScenarioParameterResolver implements ParameterResolver {
 
         String scenarioPath = System.getenv("json-scenario-path"); //THIS WILL BE PROVIDED EXTERNALLY
         if (scenarioPath == null || scenarioPath.isEmpty())
-            throw new RuntimeException("Please provide the path for json scenario file");
+            throw new ParameterResolutionException("Please provide the path for json scenario file");
 
         //TODO: JUnit 5 does not see custom (user-defined) annotations
         //Optional<JsonScenario> anno =
@@ -37,7 +37,7 @@ public class JsonScenarioParameterResolver implements ParameterResolver {
             json = new String(Files.readAllBytes(Paths.get(scenarioPath)));
             return mapper.readValue(json, Scenario.class);
         } catch (IOException e) {
-            throw new IllegalStateException("Exception encountered while reading/parsing the json scenario file: "
+            throw new ParameterResolutionException("Exception encountered while reading/parsing the scenario file: "
                     + e.getMessage());
         }
     }
