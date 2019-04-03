@@ -1,0 +1,34 @@
+{
+  "name": "Explore California",
+  "steps": [
+    {
+      "action": "goto",
+      "params": {
+        "target": "https://www.explorecalifornia.org/index.htm"
+      }
+    },
+    {
+      "action": "click",
+      "params": {
+        "criteria": "byXpath",
+        "target": ".//*[@id='siteNav']/ul/li[5]"
+      }
+    },
+    {
+      "action": "type",
+      "params": {
+        "criteria": "byId",
+        "target": "name",
+        "value": "John Donovan"
+      }
+    },
+    {
+      "action": "selectByValue",
+      "params": {
+        "criteria": "byId",
+        "target": "state",
+        "value": "WA"
+      }
+    }
+  ]
+}
