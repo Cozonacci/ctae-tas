@@ -22,8 +22,6 @@ class ExploreCaliforniaTest {
 
     @Test
     @ExtendWith(JsonScenarioParameterResolver.class)
-    //TODO: Look for options to load non-JUnit annotation into context
-    //@JsonScenario(path = "ExploreCalifornia.json")
     void shouldFillInContactPageForm(Scenario scenario, ChromeDriver driver) {
         scenario.getSteps().forEach(step -> ActionMapper.execute(driver, step));
     }
