@@ -50,3 +50,24 @@ test controller for execution.
 
 [Check out this example - control script](src/test/java/org/testingsol/tas/e_keyworddriven/ExploreCaliforniaTest.java)
 <br>[Check out this example - test script](src/test/java/org/testingsol/tas/e_keyworddriven/ExploreCalifornia.json)
+
+### Process-driven scripting
+
+The process-driven approach builds on the keyword-driven scripting technique with the difference 
+that scenarios – representing uses cases of the SUT and variants thereof – constitute the scripts 
+which are parameterized with test data or combined into higher-level test definitions
+
+An example of such scenario is given bellow:
+
+    Feature: Explore California
+    
+      As a web site visitor
+      I want to leave my contact details
+      So that I could be notified when new trips are planned
+    
+      Scenario: User leaves contact details
+        Given 'Mark Donovan' is a new customer
+        When he navigates to 'Contact' page
+        Then should be able to leave his contact details
+
+This scenario follows a Gherkin definition style and is steps implementation is done using Cucumber tool
