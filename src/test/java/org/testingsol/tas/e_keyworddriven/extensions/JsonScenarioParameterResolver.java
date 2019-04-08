@@ -5,11 +5,12 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
+import org.junit.platform.commons.support.AnnotationSupport;
+import org.testingsol.tas.e_keyworddriven.helper.FileLoader;
 import org.testingsol.tas.e_keyworddriven.procedure.Scenario;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 public class JsonScenarioParameterResolver implements ParameterResolver {
 
@@ -23,19 +24,17 @@ public class JsonScenarioParameterResolver implements ParameterResolver {
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
             throws ParameterResolutionException {
 
-        String scenarioPath = System.getenv("json-scenario-path"); //THIS WILL BE PROVIDED EXTERNALLY
-        if (scenarioPath == null || scenarioPath.isEmpty())
-            throw new ParameterResolutionException("Please provide the path for json scenario file");
+        Optional<JsonScenario> scenarioAnnotation =
+                AnnotationSupport.findAnnotation(extensionContext.getTestMethod(), JsonScenario.class);
 
-        //TODO: JUnit 5 does not see custom (user-defined) annotations
-        //Optional<JsonScenario> anno =
-        // AnnotationSupport.findAnnotation(extensionContext.getTestMethod(), JsonScenario.class);
+        if (!scenarioAnnotation.isPresent())
+            throw new IllegalStateException(
+                    "Please provide a scenario resource using @JsonScenario test annotation");
 
         ObjectMapper mapper = new ObjectMapper();
-        String json;
         try {
-            json = new String(Files.readAllBytes(Paths.get(scenarioPath)));
-            return mapper.readValue(json, Scenario.class);
+            String content =  FileLoader.read("classpath:" + scenarioAnnotation.get().value());
+            return mapper.readValue(content, Scenario.class);
         } catch (IOException e) {
             throw new ParameterResolutionException("Exception encountered while reading/parsing the scenario file: "
                     + e.getMessage());

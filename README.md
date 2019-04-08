@@ -49,7 +49,7 @@ which could be technical (e.g. click, type) and business in nature (e.g. place o
 test controller for execution.
 
 [Check out this example - control script](src/test/java/org/testingsol/tas/e_keyworddriven/ExploreCaliforniaTest.java)
-<br>[Check out this example - test script](src/test/java/org/testingsol/tas/e_keyworddriven/ExploreCalifornia.json)
+<br>[Check out this example - test script](src/test/resources/ExploreCalifornia.json)
 
 ### Process-driven scripting
 
@@ -70,4 +70,4 @@ An example of such scenario is given bellow:
         When he navigates to 'Contact' page
         Then should be able to leave his contact details
 
-This scenario follows a Gherkin definition style and is steps implementation is done using Cucumber tool
+This scenario follows a Gherkin definition style and the steps implementation is done using Cucumber tool
